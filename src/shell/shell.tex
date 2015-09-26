@@ -917,11 +917,12 @@ very bad, and you might not even be able to make {\tt ssh} connections to the ma
 
 
 \subsection	{Scheduling tasks  }
+\label{subsection:cron}
 
 Scheduling a task to run at regular intervals, or once some time in the future 
 is quite simple in a UNIX environment.
 
-\subsubsection{Regular Intervals}
+\subsubsection{Regular Intervals}v
 UNIX has a built-in service to run services at regular intervals, named {\tt cron(1)}
 which (debatably) means `chronology'. {\tt cron} runs tasks on a schedule that is
 defined in the user's {\tt crontab(1)}. The {\tt crontab} is a file with 
@@ -1455,7 +1456,33 @@ which will tell you how your system boots up.
 
 
 \subsection {Making backups...} 
-TODO: use tar and a date, or redirect to backups section.
+% TODO: use tar and a date, or redirect to backups section.
+
+
+
+\begin{verbatim}
+/usr/local/bin/mysqldump -u backup_user -A > /tmp/database.sql
+FILENAME=database_`date +%Y%m%d-%H%M%S`.tar
+tar czvf /tmp/$FILENAME /tmp/database.sql /usr/local/www/
+
+/usr/bin/scp   /tmp/$FILENAME robg@parkway:/Users/robg/Archive/mail/
+
+rm /tmp/$FILENAME
+\end{verbatim}
+% TODO: iterate on this later? Talk about how to use mktemp so it 
+% doesn't wipe out file.
+
+This can be automated by using crontab (see~\ref{subsection:cron}) and
+using preshared keys(see~\ref{subsection:sshkeys}). Doing this will
+run this script which,
+
+\begin{enumeration}
+  \item dump the database to a flat file
+  \item tar up that file along with other folders you have selected
+  \item move that tar file to a remote server
+  \item remove the generated file
+\end{enumeration}
+  
 
 \subsection {{\tt ssh} magic}
 
@@ -1508,7 +1535,7 @@ To exit out of the remote machine, type {\tt exit}, and you will be returned
 to your local machine.  
 
 \subsection{Not typing passwords via authorized\textunderscore keys}
-
+\label{subsection:sshkeys}
 Don't like typing passwords? Like being rewarded for being lazy? Then this 
 is something you'll like.
 

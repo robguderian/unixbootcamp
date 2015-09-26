@@ -137,3 +137,6 @@ sympy-plots-for-*.tex/
 *.bak
 *.sav
 
+
+# ignore the obj file
+obj/*

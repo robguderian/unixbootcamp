@@ -1,0 +1,48 @@
+% TODO Convention: [TODO: do something in the future you fool]
+% Commands should always be in a monospace font.
+% Shell delination should be held by the # symbol followed by a space.
+% Man page references should be in the form command(page), ie. ls(1).
+
+\documentclass[a5paper,12pt]{book}
+
+\usepackage{./styles/pdfdraftcopy}
+\usepackage{./styles/subfiles}
+\usepackage{fancyhdr}
+\usepackage[a5paper, hmargin=0.5in,vmargin=1in]{geometry}
+\usepackage{graphicx}
+
+\setlength{\headheight}{15pt}
+\ifx\recipiant\undefined
+	\draftstring{}
+\else
+	\draftstring{DRAFT}
+\fi
+\draftfontsize{125pt}
+
+\begin{document}
+
+\subfile{title}
+
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+
+\fancypagestyle{plain}{
+        \fancyhf{}
+        \fancyhead[LE,RO]{\thepage}
+	\ifx\recipiant\undefined
+        	\fancyfoot[CE,CO]{REVIEW}
+	\else
+        	\fancyfoot[CE,CO]{prepared for \recipiant \ (revision \revision) }
+	\fi
+        \renewcommand{\headrulewidth}{1pt}
+        \renewcommand{\footrulewidth}{1pt}
+}
+\pagestyle{plain}
+\newpage
+\subfile{forward}
+\subfile{introduction}
+\subfile{./shell/shell.tex}
+
+\end{document}

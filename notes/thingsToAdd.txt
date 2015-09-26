@@ -1,0 +1,11 @@
+
+Talk about variables  $BLAH and export?
+
+UNIX is capitalized... what about Unix-like?  
+example:
+In Unix-like operating systems such as freebsd or.....
+
+in the file permissions part, talk about cp -p. I didn't talk about it in the part that just discusses cp.
+
+
+need to explain what TTY is

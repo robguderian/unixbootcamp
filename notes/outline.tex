@@ -1,0 +1,182 @@
+\documentclass[12pt]{article} 
+\usepackage{fullpage}
+\usepackage{textcomp}
+
+
+\usepackage{ulem}
+
+\begin{document}
+
+UNIX Development Boot Camp 
+\begin{itemize}
+	\item Shell 
+	\begin{itemize}
+		\item sh, bash, csh, ksh 
+		\item Basic commands 
+		\begin{itemize}
+			\item \sout{System traversal} - Rob
+			\begin{itemize}
+				\item \sout{cd} 
+				\item \sout{pwd}
+				\item \sout{ls / ls -l / ls -al }
+				\item \sout{.. . $\sim$ notation} % having issues bring the ~ down. tried $\tilde$ $\sim$ and \ and verbatim
+				\item \sout{Running programs} \\ % We hit the max enumerate nesting here. Faking it.
+					\sout{- ./runPWDProgram} \\
+					\sout{- programs in \$PATH}
+			\end{itemize}
+			\item \sout{File handling}
+			\begin{itemize}
+				\item \sout{cat}
+				\item \sout{more/less}
+				\item \sout{vi (intro) pico nano}
+				\item \sout{mv}
+				\item \sout{cp} 
+				\item \sout{scp} 
+				\item \sout{rsync (not packaged with all distros)}
+			\end{itemize}
+			\item \sout{Searching}
+			\begin{itemize}
+				\item \sout{find (ROB) }
+				\item \sout{grep (ROB) }
+			\end{itemize}
+			\item \sout {Process info? }
+			\begin{itemize}
+				\item \sout {top (not totally standard) (ROB) }
+				\item \sout{ps (tricky, mention pgrep,pkill) (ROB) }
+				\item kill (SEAN)
+			\end{itemize}
+			\item Other 
+			\begin{itemize}
+				\item screen (not packaged with all distros) (SEAN) 
+				\item test 
+				\item strings 
+				\item tee 
+				\item sort (SEAN)
+				\item uniq (SEAN)
+			\end{itemize}
+			\item Scheduling tasks  (SEAN)
+			\begin{itemize}
+				\item \sout{crontab}
+				\item \sout{at / atq / atrm }
+			\end{itemize}
+		\end {itemize} 
+		\item Where to find stuff... 
+		\begin{itemize}
+			\item /usr 
+			\item /usr/bin 
+			\item /sbin 
+			\item man heir(1). 
+		\end{itemize}
+		\item \sout {Magic numbers and the difference between a script and a binary} 
+		\begin{itemize}
+			\item \sout {executable}
+			\begin{itemize}
+				\item \sout {file(1)} 
+				\item \sout {\#!} 
+			\end{itemize}
+			\item \sout {Scripts  (ROB)}
+		\end{itemize}
+		\item \sout {Permissions (ROB)}
+		
+		\begin{itemize}
+			\item \sout {Commands}
+			\begin{itemize}
+				\item \sout {chmod}
+				\item \sout {chgrp}
+			\end{itemize}
+			\item \sout {Why 1777 is for idiots.} 
+		\end{itemize}
+		\item \sout{Piping}
+		\begin{itemize}
+			\item \sout{What is stdin/stdout} 
+			\item \sout{Usage of | < and > , >> <<, 2>\&1}
+		\end{itemize}
+		\item \sout{Help... man(1)}
+		\item Making backups... 
+		\begin{itemize}
+			\item tar + gz 
+		\end {itemize} 
+		\item ssh magic 
+		\begin{itemize}
+			\item \sout {Why it should be used instead of telnet }
+			\item \sout {authorized keys }
+			\item Mention tunnelling as a teaser.... have a handout with more info? 
+		\end{itemize}
+		\item {The differences between shells (a short history)}
+		% bash is not sh
+		
+	\end {itemize} 
+	\item Editors 
+	\begin{itemize}
+		\item Modal 
+		\begin{itemize}
+			\item vi 
+			\item vim 
+		\end{itemize}
+		\item Interactive 
+		\begin{itemize}
+			\item pico 
+			\item emacs 
+		\end{itemize}
+		\item IDE 
+		\begin{itemize}
+			\item eclipse (Rob)
+		\end{itemize}
+		
+		
+	\end {itemize} 
+	\item GCC Development 
+	\begin{itemize}
+		\item Compilation 
+		\begin{itemize}
+			\item gcc 
+			\item g++ 
+		\end{itemize}
+		\item Building 
+		\begin{itemize}
+			\item make(1) 
+		\end{itemize}
+		\item Debugging 
+		\begin{itemize}
+			\item ldd 
+			\item nm 
+			\item gdb 
+			\item gprof 
+			\item Special Sauce 
+			\begin{itemize}
+				\item systrace 
+				\item ktrace/kdump 
+				\item dtrace (probably leave that out... kinda nutty) 
+			\end{itemize}
+		\end{itemize}
+		
+		
+	\end {itemize} 
+	\item Source Control (SEAN)
+	\begin{itemize}
+		\item Poor man's 
+		\begin{itemize}
+			\item cp a.c a.old 
+			\item Upgrade poor man's 
+			\begin{itemize}
+				\item cp a.c a.c.`date + \%Y\%m\%d\%H\%M\%S`
+			\end{itemize}
+			\item Compile script to make it painless. 
+		\end{itemize}
+		\item Comparisons... 
+		\begin{itemize}
+			\item diff 
+			\item patch 
+			\item sdiff 
+		\end{itemize}
+		\item Now let's grow up a little. 
+		\begin{itemize}
+			\item CVS/RCS 
+			\item SVN 
+		\end{itemize}
+	\end{itemize}
+	
+	
+\end {itemize}
+
+\end{document} 

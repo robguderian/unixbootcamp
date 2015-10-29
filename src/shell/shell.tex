@@ -20,11 +20,12 @@ On the machine we are on, we are in John's home folder.
 Great, now that we know where we are, should look to see what is all in the folder we are in. To do this, we use the {\tt ls(1)} command. {\tt ls} stands for list or listing -- it will give you a listing of all the files and folders in the current folder.
 
 What does this look like?
-{\tt \\
+{\tt \begin{verbatim}\\
 \# ls\\
 oldhome\ \ \ \ \ \ Desktop\ \ \ \ \ \ Mail\ \ \ \ \ \ \ \ \ public\_html\\
 check\ \ \ \ \ \ \ \ Documents\ \ \ \ temp\\
 \# \\
+\end{verbatim}
 }
 
 Now that we have a listing of all the files and folders, we have to figure out which ones are files, and which ones are folders.  Sometimes it's not completely clear from the name which are which.
@@ -52,16 +53,13 @@ drwxr--r--   2 john student     4096 Jul 22  2009 public_html
 }
 
 When we do this, we can see a lot about the items in the directory we are in. Each line has the same format.
-%TODO - this is going off the page
 {\tt
 \begin{verbatim}
 \[FileAccessRights\] \[hard link count\] \[owner\] \[group\]    \[size\]  \[modification date\]  \[name\]
 \end{verbatim}
 }
 
-%TODO links
 The first section is the file access rights.  This will tell you who can control this file, and how.  This is described in the {\tt chmod} 
-% TODO link!
 section, so for now just note you can see it this way.  The think that we are interested in is 
 the first letter of the line.  If the line starts with a {\tt d}, that item is a directory.  If it starts with a {\tt -} it
 is a file.  From the above example you can see that {\tt public\_html} is a folder, and {\tt temp} is a file.
@@ -73,6 +71,8 @@ One interesting thing to note is that there are hidden files in some directories
 % TODO - this list is not pretty.
 %  either put it on it's own page
 %  or clean it up.
+% at least make sure it fits on one page? Create an image out of it which is
+% a page long?
 {\tt
 \begin{verbatim}
 # ls -al
@@ -138,7 +138,7 @@ drwxr-xr-x  83 john student    2822  5 Aug 09:57 ..
 \end{verbatim}
 }
 
-. and .. are two important characters in the shell environment.  A single period `.' means `this directory'. Two periods `..' means parent directory.
+{\tt .} and {\tt ..} are two important characters in the shell environment.  A single period `.' means `this directory'. Two periods `..' means parent directory.
 
 So, if we want to change to the parent directory we type {\tt cd ..}, which literally means `change directory to parent'.
 {\tt \begin{verbatim}
@@ -423,8 +423,7 @@ I'm not going to go into great detail on how to use it (since it is very powerfu
 just introduce how I use it.
 
 {\tt rsync} is very good for maintaining backups.  I use {\tt rsync} in a 
-{\tt cron} job that runs every few hours.
-%TODO link to cron section
+{\tt cron} job that runs every few hours (more on that in~\ref{subsection:cron}).
 I run a backup on a large amount of data, which could take hours to copy. 
 Since {\tt rsync} only copies added or modified files it usually only 
 takes a minute or two.
@@ -984,6 +983,7 @@ your active crontab by using:
 #crontab file.txt
 \end{verbatim}
 
+% TODO: talk about how standard out is emailed to the user
 
 \subsubsection{Run once {\tt at(1)} a certain time}
 
@@ -1386,7 +1386,7 @@ An example of a cron job that redirects both standard out and standard error wou
 This is nice, since the cron task will never try to send you an email, 
 but this also means that the cron job will not tell you if it's not working properly!
 
-\subsubsection{What is 2>\&1?}
+\subsubsection{What is 2\textgreater\&1?}
 This is a weird one, and deserves it's own subsection (so it shows up in the 
 table of contents).
 
@@ -1396,8 +1396,32 @@ a variable for standard error.
 
 So this means that the standard error of the program should be 
 piped to standard out, so it will all show up in one place!
-    
-		
+
+One use of this syntax is to make a program have \underline{no} output
+whatsoever. This is done for various reasons... and often is not the
+right thing to do.
+
+First, how it's done:
+
+\begin{verbatim}
+/root/bin/do_backup.sh >/dev/null 2>&1
+\end{verbatim}
+
+What is this doing?!?!
+
+\begin{itemize}
+\item runs the script `{\tt do\_backup.sh}' which is in `/root/bin'
+\item pipes standard out to /dev/null. This means the output is throw away!
+\item then, standard error is sent to the same file as standard out. Standard
+out is being thrown away, so standard error is being thrown away with it.
+\end{itemize}
+
+This is a more common idiom than you may expect. This is frequently used in
+cron jobs. The standard out is emailed to the user that owns the cron
+job(see~\ref{subsection:cron} for more on that), and some people find this
+annoying. A better solution is to have scripts only output errors do \underline{do}
+want to see, to prevent valuable output to be lost to `/dev/null'.
+
 \subsection {Help... {\tt man(1)}}
 You've seen us using weird notation for UNIX commands. This is a (almost) standard
 way of directing someone to the help files that exist on all UNIX systems. 
@@ -1456,16 +1480,13 @@ which will tell you how your system boots up.
 
 
 \subsection {Making backups...} 
-% TODO: use tar and a date, or redirect to backups section.
-
-
 
 \begin{verbatim}
 /usr/local/bin/mysqldump -u backup_user -A > /tmp/database.sql
 FILENAME=database_`date +%Y%m%d-%H%M%S`.tar
 tar czvf /tmp/$FILENAME /tmp/database.sql /usr/local/www/
 
-/usr/bin/scp   /tmp/$FILENAME robg@parkway:/Users/robg/Archive/mail/
+/usr/bin/scp   /tmp/$FILENAME robg@parkway:/Users/robg/Archive/servername/
 
 rm /tmp/$FILENAME
 \end{verbatim}
@@ -1476,12 +1497,12 @@ This can be automated by using crontab (see~\ref{subsection:cron}) and
 using preshared keys(see~\ref{subsection:sshkeys}). Doing this will
 run this script which,
 
-\begin{enumeration}
+\begin{enumerate}
   \item dump the database to a flat file
   \item tar up that file along with other folders you have selected
   \item move that tar file to a remote server
   \item remove the generated file
-\end{enumeration}
+\end{enumerate}
   
 
 \subsection {{\tt ssh} magic}
@@ -1548,7 +1569,6 @@ ssh-keygen -t rsa -b 2048
 \end{verbatim}
 
 The command uses -t for type (rsa 
-% TODO - citation
 is the current standard), and -b for how 
 many bits the key should be (use a power of two, and nothing too small).
 
@@ -1556,7 +1576,8 @@ many bits the key should be (use a power of two, and nothing too small).
 keys it generates (the default place is good [~/.ssh/]), and for a password.
 You should give it a password (which will encrypt your private key), but don't need to. 
 The risk you run by not encrypting your private key, is that anyone who has it
-can be you.
+can be you. As always, {\tt man ssh-keygen} is the best source for how the
+program will run on your installation.
 
 Go to your the .ssh directory in your home folder (~/.ssh/), you should see at 
 least 2 files: id\textunderscore rsa, and id\textunderscore rsa.pub. These are your public and private keys

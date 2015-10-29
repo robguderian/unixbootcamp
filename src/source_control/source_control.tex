@@ -17,7 +17,14 @@ put it somewhere safe.
 Setting it up is as simple a little script:
 	{\tt tar -zcf ~/backups/myProgram-`date +\%Y\%m\%d-\%H\%M\%s` ~/myProgram/}
 
-The above `one-liner' is pretty simple when decomposed.  The stuff enclosed in the `back-ticks' ({\tt `}) is executing the date command which outputs the date and time in a specific format.  That result is passed as part of the arguments to the 'tar' command which combines and compresses the contents of the folder named {\tt myProgram}.  The simple approach from here is to put this
-into put this into a little script which you run before each functional iteration (ie. before you start work) or if you are particularly paranoid you can put this in your login script to backup every time you start a login shell.  At the very least
-what you are doing is making a full backup of your work before you start working which you can use to recover from a bad editing
+The above `one-liner' is pretty simple when decomposed.  The stuff enclosed in the
+`back-ticks' ({\tt `}) is executing the date command which outputs the date and time
+in a specific format.  That result is passed as part of the arguments to the `tar'
+command which combines and compresses the contents of the folder named {\tt myProgram}. 
+The simple approach from here is to put this
+into put this into a little script which you run before each functional iteration
+(ie. before you start work) or if you are particularly paranoid you can put this
+in your login script to backup every time you start a login shell.  At the very least
+what you are doing is making a full backup of your work before you start working
+which you can use to recover from a bad editing
 session or to refer back to a previous iteration.

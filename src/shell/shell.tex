@@ -1479,7 +1479,24 @@ how to use your rc.conf file (if you have one) and how to add items to start at 
 which will tell you how your system boots up.
 
 
-\subsection {Making backups...} 
+\subsection {Making backups}
+
+One of the core tasks that is often one of the first scripts that new users
+have to write, is the automation of doing a backup. To make backups, we generally
+want one big file that is an omnibus of all the files we want to make a snapshot
+of.
+
+To do this, we'll use \tt{tar(1)}, which is an acronym for something rather archaic:
+tape archive. Why tape archive? The data is flattened, and serialized into one huge
+binary file that could be written to tape. Or, for more modern uses, compressed, and
+sent to a backup server (which may include actual tape backups, but need not).
+
+The following example dumps a mysql database to a file, creates a filename that
+has the current date in it (very useful for looking back at your backups), then
+creates a tar of that database, and the \tt{www} folder. Note the \tt{z} flag,
+this uses \tt{gzip} to compress the tar file. Finally, it uses
+\tt{scp} to move this file off to a different server for storage.  After all of that,
+the archive file is deleted, so we don't fill up the disk space on this server.
 
 \begin{verbatim}
 /usr/local/bin/mysqldump -u backup_user -A > /tmp/database.sql
@@ -1494,16 +1511,11 @@ rm /tmp/$FILENAME
 % doesn't wipe out file.
 
 This can be automated by using crontab (see~\ref{subsection:cron}) and
-using preshared keys(see~\ref{subsection:sshkeys}). Doing this will
-run this script which,
+using preshared keys(see~\ref{subsection:sshkeys}). 
 
-\begin{enumerate}
-  \item dump the database to a flat file
-  \item tar up that file along with other folders you have selected
-  \item move that tar file to a remote server
-  \item remove the generated file
-\end{enumerate}
-  
+One defensive programming strategy that can be added is to use \tt{mktemp} to
+create a filename for the database dump. This is a more secure way of doing
+automated file creation.  
 
 \subsection {{\tt ssh} magic}
 

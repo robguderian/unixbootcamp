@@ -1595,7 +1595,57 @@ if you did it was for your private key, and therefore your password wasn't blast
 over the internet!
 
 \subsection{The differences between shells (a short history)}
-	% bash is not sh
+% bash is not sh
+The first shell that was introduced was {\tt sh}, and introduced eariest versions of UNIX.
+It is commonly called the "Bourne shell", named after the developer of the shell.
+Even in the earilest versions, it introduced piping, if statements and other control blocks.
+All current shells have used this for inspiration, and are frequently backwards-compatible to
+ {\tt sh}.
+ % do we need references for this? I stole it from wikipedia. I'm not an authority on this stuff -rg
+
+Some shells use tab-completion to finish commands for users, other use the escape key,
+and some don't don completion for us at all! You'll have to find the shell that works
+for you and your preferneces. Some people have a prefernce for using as a hands-on shell, and
+a different shell for scripting.
+
+ Modern shells add user-friendly features, or allow for easier scripting. There are frequently
+ minute differences that make the modern shells not compatible with each other.
+
+ Overall, be careful when taking advice about a command from sources on the internet,
+ as they might be for a different shell! It might not work at all with the shell you've chosen. Some might
+ be compatible one-way, but not the other. Things that work in \tt{sh} should work in \tt{bash}, but
+ things that work in \tt{bash} might not work in \tt{sh}. That's because \tt{bash} is backwards-compatible
+ to \tt{sh}, but \tt{sh} is not forwards-compatible to the features added in \tt{bash}!
+
+ \subsubsection{csh}
+ The \tt{csh} shell is a bit of an old-school shell by today's standards, with some
+ pundits defending it tooth-and-nail. It has been significant in the development of
+ shells, introducing the \tt{~} notation as a shorthand way of creating paths
+ to your home folder. The tilde notation is now used by most shells, as the tilde
+has proven to be very useful.
+
+\subsubsection{Korn Shell}
+The Korn shell, or \tt{ksh}, was very popular for usage and scripting in the 1990s.
+Some still use it as their daily shell, and maintains a strong following. There
+are many daily batch jobs that rely on \tt{ksh} to run them to this day. It is known
+to be highly reliable, and well-supported.
+
+\subsubsection{bash}
+
+The evolution of \tt{sh} is the Bourne again shell, or \tt{bash}. The name
+is a play on words about the religious phrase of being "born again" - which
+is clever.
+
+As stated, \tt{bash} is backwards-compatible with \tt{sh}, allowing us to run
+all \tt{sh} scripts. Shell scripting has largely moved to \tt{bash}/\tt{sh} scripts in the
+recent history, with \tt{ksh} being used less frequency for new scripts.
+
+This is the shell that ships with most Unix-like operating systems. This includes Mac OS,
+and Ubuntu.
+% though, they used to use dash... this is currently true
+The \tt{bash} shell is so pervasive, that \tt{/bin/sh} often actually
+starts up a \tt{bash} shell!
+
 
 
 

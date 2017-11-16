@@ -909,10 +909,80 @@ can't keep up with the number of processes that are requesting to be run. This i
 numbers go over 5, you'll start to notice the machine slowing down to requests. If the numbers go over 100 it's very
 very bad, and you might not even be able to make {\tt ssh} connections to the machine any more.
 
+\subsubsection{kill}
+% TODO - talk about pgrep | xargs kill and the dangers therein, if you want!
 
-% TODO - kill - Sean, this one's for you. talk about pgrep | xargs kill and the dangers therein, if you want!
-			
-\subsection {Other (screen, test....) }
+\subsection {Other useful commands}
+
+These are commands that are somewhat harder to classify, but very useful! Not
+all these programs are in the base install of all distributions.
+
+\subsubsection {screen}
+
+\tt{screen} is a program that is called a "multiplexer", that allows us to have multiple
+terminals open on a local machine, or a remote machine. 
+
+\tt{screen} has a bit of a steep learning curve. The basics are fairly simple. The
+key is the `meta key' system. The default setting is ctrl+a. There is an order to doing
+meta-commands: hold control, press a. While still holding ctrl, press the command
+you would like to run.
+
+Some commands:
+\begin{enumerate}
+	\item a - previous window
+	\item n - next window
+	\item p - previous window
+	\item d - disconnect. The screen session stays alive, and you can connect to it later with \tt{screen -rd}
+\end{enumerate}
+
+The basics - open a new screen, open a new window, switch back to the first:
+
+\begin{figure}
+		\includegraphics[scale=0.6]{shell/screen1.pdf} 
+		\caption{First, enter screen session}
+		\label{screen1}
+\end{figure}
+
+We are then in a new window. Try typing \tt{echo first}, then create a new window: ctrl + a, c.
+
+\begin{figure}
+		\includegraphics[scale=0.6]{shell/screen2.pdf} 
+		\caption{First window}
+		\label{screen2}
+\end{figure}
+
+In that second window.
+
+\begin{figure}
+		\includegraphics[scale=0.6]{shell/screen3.pdf} 
+		\caption{Second window}
+		\label{screen3}
+\end{figure}
+
+Then, to get back to the first window, use ctrl + a, a. This takes you to the previous window, which
+in this case is the first window again.
+
+You can see that all the commands to control the screen session are with the `meta commands'.
+
+Try doing ctrl + a, d. That will disconnect you from this session, but the terminals stay
+active. Use \tt{screen -rd} to reconnect. This is very useful for running commands
+on remote machines that have dodgy connections. Without \tt{screen}, your session would
+end, and any running commands would be killed. With screen, if you get disconnected
+you will be able to reconnect to your session with your running commands intact.
+
+\tt{screen} is aging, and many people are moving to \tt{tmux}.  The old guard still
+uses screen, and it is still more portable.
+
+\subsubsection{test}
+% TODO
+\subsubsection{strings}
+% TODO
+\subsubsection{tee}
+% TODO
+\subsubsection{sort}
+% TODO
+\subsubsection{uniq}
+% TODO
 
 
 \subsection	{Scheduling tasks  }

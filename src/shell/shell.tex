@@ -189,7 +189,7 @@ around your filesystem.
 }
 
 
-\subsection{Running Programs}
+\section{Running Programs}
 Now that we know how to get around our filesystem, we want to run programs that
 will do things for us.
 
@@ -228,7 +228,7 @@ If we want to know which {\tt ls} is going to be found, we can use the {\tt whic
 }
 So, on this system, {\tt ls} is kept in {\tt /bin}.
 
-\subsubsection{Running Programs not in the PATH}
+\subsection{Running Programs not in the PATH}
 What if we wrote a little program and wanted to run it?
 
 When you want to run a specific program, you have to use a fully-qualified command. 
@@ -261,7 +261,7 @@ So, {\tt ./backup} means `run ``backup'' which is in this directory'.
 So, whether we use the PATH to complete the fully qualified name for us, or if we specify it ourselves
 Unix-like operating systems need the fully qualified path to run a program.
 
-\subsection {File Handling}
+\section {File Handling}
 So far we've moved around the filesystem and ran some programs. Now, how do we move
 files around the file system, or read files?
 
@@ -496,7 +496,7 @@ on {\tt vi} to learn how to use that.
  
 
 
-\subsection{Searching}
+\section{Searching}
 I think we've all been in the situation that we either:
 \begin{enumerate}
 \item Forgot where something was
@@ -507,7 +507,7 @@ I think we've all been in the situation that we either:
 
 Luckily, the shell give us pretty good access to find the things we've lost, and even do a little better than just help us find it!
 
-\subsubsection{The {\tt find} and {\tt locate} commands}
+\subsection{The {\tt find} and {\tt locate} commands}
 The simplest way to find files is by using the {\tt find(1)} command.  The {\tt find} 
 command works best if you have a notion of where the file you're looking for might be. 
 Using {\tt find} on the entire filesystem is not very efficient and tends to run into issues. 
@@ -628,7 +628,7 @@ To sum things up, there is an obvious trade-off between reliable results and spe
 and have reliable results. Both are useful tools and have their own uses, and you should 
 choose the right tool for the job.
 
-\subsubsection{Searching for text using {\tt grep}}
+\subsection{Searching for text using {\tt grep}}
 The {\tt grep(1)} command is a fantastic command that has 
 many uses, though some of them are not immediately obvious.
 
@@ -752,7 +752,7 @@ expressions in it's search terms.
 % these are to help not break diff/patch/merging
 % The heading roughly match that of the outline
 % the sub-ing of the heading might be off.
-\subsection {Process info}
+\section {Process info}
 
 So, we've discovered a lot about the tools available to us, and 
 we've been running programs... but what if a program `goes wild'? And, 
@@ -881,15 +881,16 @@ can't keep up with the number of processes that are requesting to be run. This i
 numbers go over 5, you'll start to notice the machine slowing down to requests. If the numbers go over 100 it's very
 very bad, and you might not even be able to make {\tt ssh} connections to the machine any more.
 
-\subsubsection{kill}
+\subsection{kill}
 % TODO - talk about pgrep | xargs kill and the dangers therein, if you want!
 
-\subsection {Other useful commands}
+
+\section {Other useful commands}
 
 These are commands that are somewhat harder to classify, but very useful! Not
 all these programs are in the base install of all distributions.
 
-\subsubsection {screen}
+\subsection {screen}
 
 {\tt screen} is a program that is called a "multiplexer", that allows us to have multiple
 terminals open on a local machine, or a remote machine. 
@@ -945,29 +946,29 @@ you will be able to reconnect to your session with your running commands intact.
 {\tt screen} is aging, and many people are moving to {\tt tmux}.  The old guard still
 uses screen, and it is still more portable.
 
-\subsubsection{test}
+\subsection{test}
 % todo
 Test lets us create if statements in our shell.
 
 % Talk about how  [] is a shorthand for test.
 
-\subsubsection{strings}
+\subsection{strings}
 % TODO
-\subsubsection{tee}
+\subsection{tee}
 % TODO
-\subsubsection{sort}
+\subsection{sort}
 % TODO
-\subsubsection{uniq}
+\subsection{uniq}
 % TODO
 
 
-\subsection	{Scheduling tasks  }
+\section	{Scheduling tasks  }
 \label{subsection:cron}
 
 Scheduling a task to run at regular intervals, or once some time in the future 
 is quite simple in a UNIX environment.
 
-\subsubsection{Regular Intervals}v
+\subsection{Regular Intervals}
 UNIX has a built-in service to run services at regular intervals, named {\tt cron(1)}
 which (debatably) means `chronology'. {\tt cron} runs tasks on a schedule that is
 defined in the user's {\tt crontab(1)}. The {\tt crontab} is a file with 
@@ -1034,7 +1035,7 @@ your active crontab by using:
 
 % TODO: talk about how standard out is emailed to the user
 
-\subsubsection{Run once {\tt at(1)} a certain time}
+\subsection{Run once {\tt at(1)} a certain time}
 
 The {\tt at(1)} command allows you to run a command (including running shell scripts) 
 at a certain time. The at command differs from {\tt cron} on that it only 
@@ -1076,10 +1077,11 @@ And finally, if you want to remove an {\tt at} job, use {\tt atrm(1)}.
 When you run {\tt atq} you'll see that the jobs are enumerated (have numbers before 
 the dates). To remove a job run {\tt atrm 5}, replacing 5 with the job number you want to remove.
 			
-\subsection {Where to find stuff...} 
-		
+\section {Where to find stuff...} 
+% Todo
+man hier		
 
-\subsection {Programs in UNIX}
+\section {Programs in UNIX}
 
 	% introduce Magic numbers and the difference between a script and a binary 
 
@@ -1097,7 +1099,7 @@ the dates). To remove a job run {\tt atrm 5}, replacing 5 with the job number yo
 
 % http://en.wikipedia.org/wiki/Magic_number_%28programming%29
 
-\subsubsection {Executables} 
+\subsection {Executables} 
 
 	
 	Executables are programs! They are run directly on the system, much like .exe programs
@@ -1115,7 +1117,7 @@ the dates). To remove a job run {\tt atrm 5}, replacing 5 with the job number yo
 	Overall, binary files are not human-readable. They are compiled programs that run natively on a particular machine
 	architecture.
 
-\subsubsection {Scripts}
+\subsection {Scripts}
 	Scripts are user-readable and user-writable programs.  You can open any script using
 	the text editor of your choice. Scripts are literally text files that contain commands
 	that will be run by some program. UNIX-like operating systems have many different
@@ -1155,7 +1157,7 @@ the dates). To remove a job run {\tt atrm 5}, replacing 5 with the job number yo
 	That being said, it's still very fast. In an environment that speed is key, you should maybe consider a 
 	language that creates compiled binary.
 	
-\subsubsection{The {\tt file} command}
+\subsection{The {\tt file} command}
 
 	UNIX gives us a tool to determine what kind of file a file is, and it's called {\tt file}!
 
@@ -1208,7 +1210,7 @@ Permissions are (relatively) obvious with files... but not as obvious with folde
 Note that even if a user don't have write on the folder, but has write on a file, the user can still change the contents of the file.
 
 Now we have the basics of permissions... now to the commands
-\subsubsection{{\tt chmod}}
+\subsection{{\tt chmod}}
 	The {\tt chmod} command means `change mode'. Useful, right?... It really means `change permissions'.
 	There's two ways to use the {\tt chmod} command to change permissions. The pretty way, and the good way.
 	
@@ -1266,7 +1268,7 @@ Give everyone execute
 \begin{verbatim} chmod 111 somefile.txt \end{verbatim}	
 %todo: talk about how this could be done with \begin{verbatim} chmod 001 somefile.txt \end{verbatim}	?
 
-\subsubsection{{\tt chgrp} and {\tt chown}}
+\subsection{{\tt chgrp} and {\tt chown}}
 We've seen the words `owner' and `group' tossed around a lot already. Here's what they 
 actually mean.
 
@@ -1524,7 +1526,7 @@ how to use your rc.conf file (if you have one) and how to add items to start at 
 which will tell you how your system boots up.
 
 
-\subsection {Making backups}
+\section {Making backups}
 
 One of the core tasks that is often one of the first scripts that new users
 have to write, is the automation of doing a backup. To make backups, we generally
@@ -1562,7 +1564,7 @@ One defensive programming strategy that can be added is to use {\tt mktemp} to
 create a filename for the database dump. This is a more secure way of doing
 automated file creation.  
 
-\subsection {{\tt ssh} magic}
+\section {{\tt ssh} magic}
 
 A short history: Since the beginning of time (the 1970s in UNIX time) there have been ways
 to connect to computers that are not in front of you. This is pretty commonplace in our world, 
@@ -1651,7 +1653,7 @@ Log out ({\tt exit}) and {\tt ssh} back in. You didn't have to type a password, 
 if you did it was for your private key, and therefore your password wasn't blasted
 over the internet!
 
-\subsection{The differences between shells (a short, incomplete history)}
+\section{The differences between shells (a short, incomplete history)}
 % bash is not sh
 The first shell that was introduced was {\tt sh}, and introduced eariest versions of UNIX.
 It is commonly called the "Bourne shell", named after the developer of the shell.
@@ -1674,20 +1676,20 @@ a different shell for scripting.
  things that work in {\tt bash} might not work in {\tt sh}. That's because {\tt bash} is backwards-compatible
  to {\tt sh}, but {\tt sh} is not forwards-compatible to the features added in {\tt bash}!
 
- \subsubsection{csh}
+ \subsection{csh}
  The {\tt csh} shell is a bit of an old-school shell by today's standards, with some
  pundits defending it tooth-and-nail. It has been significant in the development of
  shells, introducing the {\tt ~} notation as a shorthand way of creating paths
  to your home folder. The tilde notation is now used by most shells, as the tilde
 has proven to be very useful.
 
-\subsubsection{Korn Shell}
+\subsection{Korn Shell}
 The Korn shell, or {\tt ksh}, was very popular for usage and scripting in the 1990s.
 Some still use it as their daily shell, and maintains a strong following. There
 are many daily batch jobs that rely on {\tt ksh} to run them to this day. It is known
 to be highly reliable, and well-supported.
 
-\subsubsection{bash}
+\subsection{bash}
 
 The evolution of {\tt sh} is the Bourne again shell, or {\tt bash}. The name
 is a play on words about the religious phrase of being "born again" - which

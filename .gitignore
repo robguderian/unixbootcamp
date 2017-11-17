@@ -140,3 +140,6 @@ sympy-plots-for-*.tex/
 
 # ignore the obj file
 obj/*
+
+# damned Mac files
+.DS_Store

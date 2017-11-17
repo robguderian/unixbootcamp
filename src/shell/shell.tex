@@ -891,10 +891,10 @@ all these programs are in the base install of all distributions.
 
 \subsubsection {screen}
 
-\tt{screen} is a program that is called a "multiplexer", that allows us to have multiple
+{\tt screen} is a program that is called a "multiplexer", that allows us to have multiple
 terminals open on a local machine, or a remote machine. 
 
-\tt{screen} has a bit of a steep learning curve. The basics are fairly simple. The
+{\tt screen} has a bit of a steep learning curve. The basics are fairly simple. The
 key is the `meta key' system. The default setting is ctrl+a. There is an order to doing
 meta-commands: hold control, press a. While still holding ctrl, press the command
 you would like to run.
@@ -904,7 +904,7 @@ Some commands:
 	\item a - previous window
 	\item n - next window
 	\item p - previous window
-	\item d - disconnect. The screen session stays alive, and you can connect to it later with \tt{screen -rd}
+	\item d - disconnect. The screen session stays alive, and you can connect to it later with {\tt screen -rd}
 \end{enumerate}
 
 The basics - open a new screen, open a new window, switch back to the first:
@@ -915,7 +915,7 @@ The basics - open a new screen, open a new window, switch back to the first:
 		\label{screen1}
 \end{figure}
 
-We are then in a new window. Try typing \tt{echo first}, then create a new window: ctrl + a, c.
+We are then in a new window. Try typing {\tt echo first}, then create a new window: ctrl + a, c.
 
 \begin{figure}
 		\includegraphics[scale=0.6]{shell/screen2.png} 
@@ -937,12 +937,12 @@ in this case is the first window again.
 You can see that all the commands to control the screen session are with the `meta commands'.
 
 Try doing ctrl + a, d. That will disconnect you from this session, but the terminals stay
-active. Use \tt{screen -rd} to reconnect. This is very useful for running commands
-on remote machines that have dodgy connections. Without \tt{screen}, your session would
+active. Use {\tt screen -rd} to reconnect. This is very useful for running commands
+on remote machines that have dodgy connections. Without {\tt screen}, your session would
 end, and any running commands would be killed. With screen, if you get disconnected
 you will be able to reconnect to your session with your running commands intact.
 
-\tt{screen} is aging, and many people are moving to \tt{tmux}.  The old guard still
+{\tt screen} is aging, and many people are moving to {\tt tmux}.  The old guard still
 uses screen, and it is still more portable.
 
 \subsubsection{test}
@@ -984,6 +984,7 @@ The  values are
 \end{enumerate}
 
 % The | and ┬ and _ didn't work in verabtim. 
+{\tt
 \begin{lstlisting}[style=ascii-tree]
 *    *    *    *    *  command to be executed
 ┬    ┬    ┬    ┬    ┬
@@ -995,6 +996,7 @@ The  values are
 │    └──────────────────── hour
 └───────────────────────── min
 \end{lstlisting}
+}
 
 If you want to run a command every hour, put a star in that spot {\tt *}.
 
@@ -1529,16 +1531,16 @@ have to write, is the automation of doing a backup. To make backups, we generall
 want one big file that is an omnibus of all the files we want to make a snapshot
 of.
 
-To do this, we'll use \tt{tar(1)}, which is an acronym for something rather archaic:
+To do this, we'll use {\tt tar(1)}, which is an acronym for something rather archaic:
 tape archive. Why tape archive? The data is flattened, and serialized into one huge
 binary file that could be written to tape. Or, for more modern uses, compressed, and
 sent to a backup server (which may include actual tape backups, but need not).
 
 The following example dumps a mysql database to a file, creates a filename that
 has the current date in it (very useful for looking back at your backups), then
-creates a tar of that database, and the \tt{www} folder. Note the \tt{z} flag,
-this uses \tt{gzip} to compress the tar file. Finally, it uses
-\tt{scp} to move this file off to a different server for storage.  After all of that,
+creates a tar of that database, and the {\tt www} folder. Note the {\tt z} flag,
+this uses {\tt gzip} to compress the tar file. Finally, it uses
+{\tt scp} to move this file off to a different server for storage.  After all of that,
 the archive file is deleted, so we don't fill up the disk space on this server.
 
 \begin{verbatim}
@@ -1556,7 +1558,7 @@ rm /tmp/$FILENAME
 This can be automated by using crontab (see~\ref{subsection:cron}) and
 using preshared keys(see~\ref{subsection:sshkeys}). 
 
-One defensive programming strategy that can be added is to use \tt{mktemp} to
+One defensive programming strategy that can be added is to use {\tt mktemp} to
 create a filename for the database dump. This is a more secure way of doing
 automated file creation.  
 
@@ -1668,38 +1670,38 @@ a different shell for scripting.
 
  Overall, be careful when taking advice about a command from sources on the internet,
  as they might be for a different shell! It might not work at all with the shell you've chosen. Some might
- be compatible one-way, but not the other. Things that work in \tt{sh} should work in \tt{bash}, but
- things that work in \tt{bash} might not work in \tt{sh}. That's because \tt{bash} is backwards-compatible
- to \tt{sh}, but \tt{sh} is not forwards-compatible to the features added in \tt{bash}!
+ be compatible one-way, but not the other. Things that work in {\tt sh} should work in {\tt bash}, but
+ things that work in {\tt bash} might not work in {\tt sh}. That's because {\tt bash} is backwards-compatible
+ to {\tt sh}, but {\tt sh} is not forwards-compatible to the features added in {\tt bash}!
 
  \subsubsection{csh}
- The \tt{csh} shell is a bit of an old-school shell by today's standards, with some
+ The {\tt csh} shell is a bit of an old-school shell by today's standards, with some
  pundits defending it tooth-and-nail. It has been significant in the development of
- shells, introducing the \tt{~} notation as a shorthand way of creating paths
+ shells, introducing the {\tt ~} notation as a shorthand way of creating paths
  to your home folder. The tilde notation is now used by most shells, as the tilde
 has proven to be very useful.
 
 \subsubsection{Korn Shell}
-The Korn shell, or \tt{ksh}, was very popular for usage and scripting in the 1990s.
+The Korn shell, or {\tt ksh}, was very popular for usage and scripting in the 1990s.
 Some still use it as their daily shell, and maintains a strong following. There
-are many daily batch jobs that rely on \tt{ksh} to run them to this day. It is known
+are many daily batch jobs that rely on {\tt ksh} to run them to this day. It is known
 to be highly reliable, and well-supported.
 
 \subsubsection{bash}
 
-The evolution of \tt{sh} is the Bourne again shell, or \tt{bash}. The name
+The evolution of {\tt sh} is the Bourne again shell, or {\tt bash}. The name
 is a play on words about the religious phrase of being "born again" - which
 is clever.
 
-As stated, \tt{bash} is backwards-compatible with \tt{sh}, allowing us to run
-all \tt{sh} scripts. Shell scripting has largely moved to \tt{bash}/\tt{sh} scripts in the
-recent history, with \tt{ksh} being used less frequency for new scripts.
+As stated, {\tt bash} is backwards-compatible with {\tt sh}, allowing us to run
+all {\tt sh} scripts. Shell scripting has largely moved to {\tt bash}/{\tt sh} scripts in the
+recent history, with {\tt ksh} being used less frequency for new scripts.
 
 This is the shell that ships with most Unix-like operating systems. This includes Mac OS,
 and Ubuntu.
 % though, they used to use dash... this is currently true
-The \tt{bash} shell is so pervasive, that \tt{/bin/sh} often actually
-starts up a \tt{bash} shell!
+The {\tt bash} shell is so pervasive, that {\tt /bin/sh} often actually
+starts up a {\tt bash} shell!
 
 
 

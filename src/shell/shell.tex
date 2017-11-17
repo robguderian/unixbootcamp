@@ -980,20 +980,21 @@ The  values are
     \item the hour to run values (0-23)
     \item the day of month to run (0-31)
     \item the month to run (1-12)
-    \item the day of the week to run (0-7)
+    \item the day of the week to run (0-7). 0 or 7 are Sunday.
 \end{enumerate}
 
-\begin{verbatim}
+% The | and ┬ and _ didn't work in verabtim. 
+\begin{lstlisting}[style=ascii-tree]
 *    *    *    *    *  command to be executed
 ┬    ┬    ┬    ┬    ┬
 │    │    │    │    │
 │    │    │    │    │
-│    │    │    │    └───── day of week (0 or 7 are Sunday)
+│    │    │    │    └───── day of week
 │    │    │    └────────── month
 │    │    └─────────────── day of month
 │    └──────────────────── hour
 └───────────────────────── min
-\end{verbatim}
+\end{lstlisting}
 
 If you want to run a command every hour, put a star in that spot {\tt *}.
 

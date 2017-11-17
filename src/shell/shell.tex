@@ -20,11 +20,11 @@ On the machine we are on, we are in John's home folder.
 Great, now that we know where we are, should look to see what is all in the folder we are in. To do this, we use the {\tt ls(1)} command. {\tt ls} stands for list or listing -- it will give you a listing of all the files and folders in the current folder.
 
 What does this look like?
-{\tt \begin{verbatim}\\
-\# ls\\
-oldhome\ \ \ \ \ \ Desktop\ \ \ \ \ \ Mail\ \ \ \ \ \ \ \ \ public\_html\\
-check\ \ \ \ \ \ \ \ Documents\ \ \ \ temp\\
-\# \\
+{\tt \begin{verbatim}
+# ls
+oldhome      Desktop      Mail         public_html
+check        Documents    temp
+# 
 \end{verbatim}
 }
 
@@ -55,7 +55,7 @@ drwxr--r--   2 john student     4096 Jul 22  2009 public_html
 When we do this, we can see a lot about the items in the directory we are in. Each line has the same format.
 {\tt
 \begin{verbatim}
-\[FileAccessRights\] \[hard link count\] \[owner\] \[group\]    \[size\]  \[modification date\]  \[name\]
+[FileAccessRights] [hard link count] [owner] [group]    [size]  [modification date]  [name]
 \end{verbatim}
 }
 
@@ -78,27 +78,14 @@ One interesting thing to note is that there are hidden files in some directories
 # ls -al
 drwx--x--x  34 john student     4096 Aug  5 15:16 .
 drwxr-xr-x 2779 root     root      253952 Aug  4 19:38 ..
-drwxr-xr-x   2 john student     4096 Oct 29  2004 .acrobat
--rw-r--r--   1 john student      237 Apr 25  2005 .acrosrch
-drwx------   2 john student     4096 Apr  5  2005 .adobe
 -rw-------   1 john student      878 Feb  5  2010 .bash_history
 -rwx------   1 john student      789 Sep  8  2003 .cshrc
 drwxr-xr-x   2 john student     4096 Apr 11  2005 .desktop
 -rw-------   1 john student       26 May  4  2006 .dmrc
--rw-r--r--   1 john student        0 Jan 10  2007 .fonts.cache-1
-drwx------   4 john student     4096 Feb  2  2007 .gconf
-drwx------   2 john student     4096 Feb  2  2007 .gconfd
-drwx------   6 john student     4096 Apr 11  2005 .gnome
-drwxr-xr-x   2 john student     4096 Jan  9  2007 .gnome-desktop
-drwx------   8 john student     4096 Feb  2  2007 .gnome2
-drwx------   5 john netscape    4096 Apr 11  2005 .netscape
 
 [snip]
 
 -rw-------   1 john student      269 Jan  9  2007 .recently-used
--rw-------   1 john student      497 May  4  2006 .rhn-applet.conf
--rw-r--r--   1 john student     1111 Mar  3  2005 .smc.properties
--rw-------   1 john student      733 Apr  6  2005 .TTauthority
 drwx------   2 john student     4096 Apr  6  2005 .vnc
 -rw-------   1 john student     3519 Feb  2  2007 .Xauthority
 -rw-------   1 john student     5543 Aug  5 15:16 temp
@@ -148,7 +135,6 @@ So, if we want to change to the parent directory we type {\tt cd ..}, which lite
 #
 # pwd
 /home/john
-#
 \end{verbatim}
 }
 
@@ -173,7 +159,6 @@ could run this command:
 /home/john/Desktop/Videos
 # ls ..
 MyStuff       Videos        
-#
 \end{verbatim}
 }
 
@@ -268,7 +253,6 @@ We can use `.' to fill in the path for us!
 bash: backup: command not found
 # ./backup
 ** program successfully ran **
-#
 \end{verbatim}
 }
 
@@ -302,7 +286,6 @@ backup.c	push.c		website
 # ls
 backup.c		push.c
 backup_new_name.c	website
-#
 \end{verbatim}
 }
 
@@ -315,7 +298,6 @@ backup.c
 # cp backup_html.c ../public_html
 # ls ../public_html
 backup_html.c     index.html
-#
 \end{verbatim}
 }
 
@@ -329,7 +311,6 @@ you can copy and rename, or just copy.
 # cp -r public_html /Archive
 # ls /Archive
 backup.c     public_html
-#
 \end{verbatim}
 }
 
@@ -349,7 +330,6 @@ backup_new_name.c	website
 backup.c		backup_new_name.c	push.c
 # ls ../public_html
 backup_html.c     index.html     website
-#
 \end{verbatim}
 }
 
@@ -368,7 +348,6 @@ backup.c		backup_new_name.c	push.c
 # mv push.c pull.c
 # ls
 backup.c		backup_new_name.c     pull.c
-#
 \end{verbatim}
 }
 
@@ -391,7 +370,6 @@ point {\tt scp} to the machine we want to copy data to or from.
 
 {\tt \begin{verbatim}
 # scp -r john@example.ca:~/my_folder .
-#
 \end{verbatim}
 }
 
@@ -409,7 +387,6 @@ part will be the destination.
 
 {\tt \begin{verbatim}
 # scp -r ~/projects/website john@example.ca:~/public_html/
-#
 \end{verbatim}
 }
 
@@ -560,7 +537,6 @@ parameter makes find look for a file that has the filename specified.
 /home/john/projects/avr/readme
 # find /home/john/projects/avr/ -name readme
 /home/john/projects/avr/readme
-#
 \end{verbatim}
 }
 One important thing to note is that the filename is case sensitive. If you have 
@@ -587,7 +563,6 @@ but don't know the rest of the filename, you could do this:
 ./arduino/readme
 ./avr/readme
 ./python/Readme
-#
 \end{verbatim}
 }
 Notice the \\ front of the *.  If you do not do that, the 
@@ -729,7 +704,6 @@ function name and that it has a .py suffix.
 # grep printFile *.py
 readTree.py:def printFile(name, depth):
 readTree.py:            printFile(line[depth], depth)
-#
 \end{verbatim}
 }
 This command searches for the text `printFile' in all .py (* meaning `anything' and we said *.py) 
@@ -842,7 +816,6 @@ just told me I'm running ps. Great. Here's an example with more programs running
  4765 p7  S+      0:00.01 less aFile
  1260 p8  Ss      0:00.01 -ksh (ksh)
 10119 p8  R+      0:00.00 ps
-# 
 \end{verbatim}
 }
 
@@ -876,7 +849,6 @@ is running.
 # ps -ax | grep less
 16094 p6  I+      0:00.01 less sent
  4765 p7  I+      0:00.01 less aFile
-# 
 \end{verbatim}
 }
 
@@ -938,7 +910,7 @@ Some commands:
 The basics - open a new screen, open a new window, switch back to the first:
 
 \begin{figure}
-		\includegraphics[scale=0.6]{shell/screen1.pdf} 
+		\includegraphics[scale=0.6]{shell/screen1.png} 
 		\caption{First, enter screen session}
 		\label{screen1}
 \end{figure}
@@ -946,7 +918,7 @@ The basics - open a new screen, open a new window, switch back to the first:
 We are then in a new window. Try typing \tt{echo first}, then create a new window: ctrl + a, c.
 
 \begin{figure}
-		\includegraphics[scale=0.6]{shell/screen2.pdf} 
+		\includegraphics[scale=0.6]{shell/screen2.png} 
 		\caption{First window}
 		\label{screen2}
 \end{figure}
@@ -954,7 +926,7 @@ We are then in a new window. Try typing \tt{echo first}, then create a new windo
 In that second window.
 
 \begin{figure}
-		\includegraphics[scale=0.6]{shell/screen3.pdf} 
+		\includegraphics[scale=0.6]{shell/screen3.png} 
 		\caption{Second window}
 		\label{screen3}
 \end{figure}
@@ -974,7 +946,11 @@ you will be able to reconnect to your session with your running commands intact.
 uses screen, and it is still more portable.
 
 \subsubsection{test}
-% TODO
+% todo
+Test lets us create if statements in our shell.
+
+% Talk about how  [] is a shorthand for test.
+
 \subsubsection{strings}
 % TODO
 \subsubsection{tee}
@@ -1356,7 +1332,6 @@ Check out this example. Remember that {\tt cat(1)} prints out the contents of a 
 #echo Donald Knuth > name.txt
 #cat name.txt 
 Donald Knuth
-#
 \end{verbatim}
 
 So, we wrote the words Donald Knuth to a file, then printed out the contents of the
@@ -1367,7 +1342,6 @@ What if we do it again?
 #echo Donald Knuth > name.txt
 #cat name.txt 
 Donald Knuth
-#
 \end{verbatim}
 
 We only have one Donald Knuth, not two. This is because the {\tt >}	operator
@@ -1379,7 +1353,6 @@ to append... which is two greater than signs {\tt >>}.
 #cat name.txt
 Donald Knuth
 Donald Knuth
-#
 \end{verbatim}
 
 The {\tt >>} operator is good for logging to a file, since it always appends
@@ -1397,7 +1370,6 @@ name.txt
 daemon.txt	exams.txt	muzak.mp3	name.txt
 #ls | grep mp3
 muzak.mp3
-#
 \end{verbatim}
 
 In the example, we do an {\tt ls(1)} that shows us all the files in the directory,
